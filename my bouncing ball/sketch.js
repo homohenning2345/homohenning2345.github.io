@@ -1,5 +1,8 @@
 
-let xPos = 30;
+let xPos = 0;
+let yPos = 200;
+let Size = 75
+let speed = 1
 
 function setup() {
   createCanvas(400, 400);
@@ -8,7 +11,8 @@ function setup() {
 function draw() {
   background(220);
 
-circle(xPos,125,80)
-xPos = xPos +1;
+circle(xPos,yPos,Size)
+xPos = xPos +(3*speed);
+
 
 }
