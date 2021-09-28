@@ -2,8 +2,8 @@
 let xPos = 200;
 let yPos = xPos
 let Size = 40
-let xSpeed = 1
-let ySpeed = 2
+let xSpeed = 3
+let ySpeed = 6
 let diameter = Size * 2
 function setup() {
   createCanvas(windowWidth, windowHeight);
