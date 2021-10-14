@@ -4,8 +4,11 @@ function setup() {
 
 function draw() {
   background(220);
-  let a = 0
-  let b = 11
+  let x1 = mouseX
+  let y1 = mouseY
+
+  line(x1, y1, 400,400)
+
 
 
 }
