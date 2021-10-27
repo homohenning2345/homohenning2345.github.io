@@ -4,11 +4,9 @@ function setup() {
 
 function draw() {
 
-
+}
 function mouseDragged()
 {
   strokeWeight(10);
   line(mouseX, mouseY, pmouseX, pmouseY)
-}
-
 }
