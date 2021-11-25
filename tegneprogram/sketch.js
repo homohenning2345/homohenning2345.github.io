@@ -1,7 +1,5 @@
-// line start points
 let startXs = []
 let startYs = []
-// line end points
 let endXs = []
 let endYs = []
 
