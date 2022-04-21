@@ -32,20 +32,33 @@ async function Hej(msg) {
     ]
 
     if (msg.channel.id === bottestingchannel) {
-        if (msg.content === "Jeg elsker dig") {
+
+        let tokens = msg.content.split(' ')
+
+        if (tokens[0] === "Jeg elsker dig") {
 
             const index = Math.floor(Math.random() * replies.length)
 
             const reply = replies[index]
             msg.channel.send(reply)
         }
-        else if (msg.content === "!gif") {
-            msg.channel.send("gif!")
-            const url = `https://g.tenor.com/v1/search?q=cat&key=${process.env.TENORKEY}=&limit=8`
+        else if (tokens[0] === "!gif") {
+
+            let searchTerm = 'cat'
+            if (tokens.length > 1) {
+                searchTerm = tokens.slice(1).join(' ')
+            }
+            const url = `https://g.tenor.com/v1/search?q=${searchTerm}&key=${process.env.TENORKEY}=&limit=8`
             const result = await fetch(url)
             const json = await result.json()
-            console.log(json)
-            msg.channel.send(json.results[0].url)
+
+            if(json.results.length < 1) {
+                msg.channel.send('Error: not found')
+                return
+            }
+                
+            const index = Math.floor(Math.random() * json.results.length)
+            msg.channel.send(json.results[index].url)
         }
     }
 }
