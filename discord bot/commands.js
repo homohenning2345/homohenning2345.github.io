@@ -1,26 +1,5 @@
-const fetch = require("node-fetch")
 
-const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
-require('dotenv').config()
-
-const TOKEN = process.env.TOKEN
-
-console.log(TOKEN)
-
-client.login(TOKEN);
-
-client.on('ready', readydiscord)
-function readydiscord() {
-    console.log(`Logged in as ${client.user.tag}!`);
-}
-
-const commandHandler = require('./commands')
-
-client.on('messageCreate', Hej)
-
-async function Hej(msg) {
+module.exports = async function Hej(msg) {
     console.log(msg.author.username)
     console.log(msg.content)
 
