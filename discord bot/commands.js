@@ -1,5 +1,6 @@
+import fetch from "node-fetch"
 
-module.exports = async function Hej(msg) {
+export default async function(msg) {
     console.log(msg.author.username)
     console.log(msg.content)
 
@@ -16,10 +17,8 @@ module.exports = async function Hej(msg) {
 
         let tokens = msg.content.split(' ')
 
-        if (tokens[0] === "Jeg elsker dig") {
-
+        if (tokens[0] === "dav") {
             const index = Math.floor(Math.random() * replies.length)
-
             const reply = replies[index]
             msg.channel.send(reply)
         }
