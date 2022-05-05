@@ -1,44 +1,28 @@
-import fetch from "node-fetch"
 
-export default async function(msg) {
+import dav from './commands/dav.js'
+import gif from './commands/gif.js'
+
+const commands = { dav, gif }
+
+export default async function (msg) {
     console.log(msg.author.username)
     console.log(msg.content)
 
     const bottestingchannel = process.env.CHANNEL_ID
 
-    const replies = [
-        'Jeg elsker også dig💘',
-        'Jeg elsker dig endnu mere',
-        'Awww hvor er du sød',
-        'Skal vi giftes?'
-    ]
 
     if (msg.channel.id === bottestingchannel) {
 
         let tokens = msg.content.split(' ')
+        console.log(tokens)
 
-        if (tokens[0] === "dav") {
-            const index = Math.floor(Math.random() * replies.length)
-            const reply = replies[index]
-            msg.channel.send(reply)
-        }
-        else if (tokens[0] === "!gif") {
-
-            let searchTerm = 'cat'
-            if (tokens.length > 1) {
-                searchTerm = tokens.slice(1).join(' ')
+        let command = tokens.shift()
+        if (command.charAt(0) === '!') {
+            // valid command
+            command = command.substring(1)
+            if (commands[command] != undefined) {
+                commands[command](msg, tokens)
             }
-            const url = `https://g.tenor.com/v1/search?q=${searchTerm}&key=${process.env.TENORKEY}=&limit=8`
-            const result = await fetch(url)
-            const json = await result.json()
-
-            if(json.results.length < 1) {
-                msg.channel.send('Error: not found')
-                return
-            }
-                
-            const index = Math.floor(Math.random() * json.results.length)
-            msg.channel.send(json.results[index].url)
         }
     }
 }
