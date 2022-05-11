@@ -10,7 +10,7 @@ class Walker {
 
   show() {
     stroke(0, 255, 0);
-    strokeWeight(25);
+    strokeWeight(5);
     point(this.pos.x, this.pos.y);
   }
 }
