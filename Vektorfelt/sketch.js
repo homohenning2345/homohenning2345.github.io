@@ -4,8 +4,8 @@ let mult = 0.005
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(30)
-  angleMode(DEGREES)
-  noiseDetail(1)
+  angleMode(radians)
+  
   let density = 20
   let space = width / density
 
@@ -21,13 +21,8 @@ function draw() {
   noStroke()
   fill(255)
   for (let i = 0; i < points.length; i++) {
-    let r = map(points[i].x, 0, width, 50, 255)
-    let g = map(points[i].x, 0, height, 50, 255)
-    let b = map(points[i].x, 0, width, 255, 50)
 
-    fill(r,g,b)
-
-    let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 0, 720)
+    let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 0, TAU)
 
     points[i].add(createVector(cos(angle), sin(angle)))
 
